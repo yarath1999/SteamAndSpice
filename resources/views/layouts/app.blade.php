@@ -58,6 +58,12 @@
             letter-spacing: -0.6px;
             margin-bottom: 24px;
         }
+            th {
+                color: #FF7F00;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+            }
         h2 {
             font-size: clamp(1.7rem, 3.5vw, 2.5rem);
             line-height: 1.2;
@@ -89,6 +95,9 @@
         .muted {
             color: #cfcfcf;
         }
+                .muted {
+                    color: #D0D0D0;
+                }
         .section {
             padding: 80px 8%;
         }
@@ -96,13 +105,13 @@
             background:
                 radial-gradient(circle at 20% 30%, rgba(255, 140, 60, 0.16), transparent 40%),
                 radial-gradient(circle at 80% 70%, rgba(255, 200, 120, 0.12), transparent 40%),
-                #1a120b;
+                    #000000;
         }
         .section-light {
             background:
                 radial-gradient(circle at 20% 30%, rgba(255, 140, 60, 0.16), transparent 40%),
                 radial-gradient(circle at 80% 70%, rgba(255, 200, 120, 0.12), transparent 40%),
-                linear-gradient(180deg, #2b1d14 0%, #1f150f 100%);
+                    linear-gradient(180deg, #000000 0%, #000000 100%);
             color: #f5f5f5;
         }
         .container {
@@ -157,7 +166,7 @@
 
         /* CTA / button interactions */
         .cta-btn {
-            background: linear-gradient(135deg, #ff7b32, #f1c876);
+            background: #FF7B32;
             color: #1a120b;
             box-shadow: 0 6px 15px rgba(255,123,50,0.3);
             transition: transform .24s ease, box-shadow .24s ease;
@@ -166,13 +175,13 @@
             transform: translateY(-2px);
             box-shadow: 0 12px 25px rgba(255,123,50,0.4);
         }
-        .cta-btn:active {
-            transform: scale(0.97);
-        }
-
-        /* Glass effect for light sections */
-        .section-light { /* preserve existing color but ensure contrast */
-            background:
+                --bg: #000000;
+                --bg-deep: #000000;
+                --ink: #f5f5f5;
+                --accent: #FF7F00;
+                --muted: #D0D0D0;
+                --panel: #000000;
+                --line: rgba(255, 127, 0, 0.18);
                 radial-gradient(circle at 20% 30%, rgba(255, 140, 60, 0.16), transparent 40%),
                 radial-gradient(circle at 80% 70%, rgba(255, 200, 120, 0.12), transparent 40%),
                 linear-gradient(165deg, rgba(43, 29, 20, 0.88), rgba(26, 18, 11, 0.72));
@@ -278,13 +287,13 @@
         }
         .topbar.topbar--overlay {
             background: linear-gradient(180deg, #2b1d14, #1a120b);
-            border-bottom-color: rgba(241, 200, 118, 0.12);
-            box-shadow: none;
+                background: linear-gradient(180deg, #000000, #000000);
+                border-bottom-color: rgba(255, 127, 0, 0.12);
             backdrop-filter: blur(0px);
         }
         .topbar.topbar--overlay.is-scrolled {
-            background: linear-gradient(180deg, #2b1d14, #1a120b);
-            border-bottom-color: rgba(241, 200, 118, 0.12);
+            background: linear-gradient(180deg, #000000, #000000);
+            border-bottom-color: rgba(255, 127, 0, 0.12);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
             backdrop-filter: blur(10px);
         }
@@ -292,22 +301,44 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
+            gap: 18px;
+            flex-wrap: nowrap;
         }
         .brand {
             color: #f5f5f5;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.02rem;
             font-weight: 800;
-            letter-spacing: 0.2px;
-            transition: color .24s ease, text-shadow .24s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: color .24s ease, text-shadow .24s ease, transform .24s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-right: 0;
+            margin-left: -14px;
+            flex: 0 0 auto;
+        }
+        .brand .brand-amp {
+            color: #FF7F00;
+            text-shadow: 0 0 12px rgba(255, 127, 0, 0.8);
+        }
+        .brand:hover {
+            transform: translateY(-1px);
         }
         .topbar.topbar--overlay .brand {
             color: #f5f5f5;
             text-shadow: none;
         }
-        .nav { display: flex; gap: 12px; flex-wrap: wrap; }
+        .nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 0 26px;
+            flex: 1 1 auto;
+            justify-content: center;
+        }
 
         /* Mobile hamburger menu */
         .hamburger {
@@ -331,6 +362,7 @@
         @media (max-width: 768px) {
             .hamburger { display: inline-flex; }
             .nav { display: none; }
+            .header-order-cta { display: none; }
             .topbar.nav-open .nav {
                 display: flex;
                 flex-direction: column;
@@ -339,12 +371,13 @@
                 left: 0;
                 right: 0;
                 top: 70px;
-                background: linear-gradient(180deg, rgba(43,29,20,0.98), rgba(26,18,11,0.98));
+                background: linear-gradient(180deg, rgba(0,0,0,0.98), rgba(0,0,0,0.98));
                 padding: 12px 16px 18px;
                 z-index: 80;
-                border-bottom: 1px solid rgba(241,200,118,0.06);
+                border-bottom: 1px solid rgba(255,127,0,0.06);
             }
             .topbar.nav-open .nav a { display: block; padding: 12px 10px; border-radius: 8px; }
+            .nav-order-link { display: block; }
         }
         .navbar a,
         .nav a {
@@ -366,6 +399,34 @@
             color: #f1c876 !important;
             transform: translateY(-1px);
             box-shadow: none;
+        }
+        .nav-order-link {
+            display: none;
+        }
+        .header-order-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: -14px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: #FF7B32;
+            color: #000000 !important;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.92rem;
+            letter-spacing: 0.2px;
+            box-shadow: 0 10px 24px rgba(255, 127, 0, 0.24);
+            transition: transform .24s ease, box-shadow .24s ease, filter .24s ease;
+            flex: 0 0 auto;
+        }
+        .header-order-cta:hover {
+            background: #FF7B32;
+            color: #000000 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 14px 28px rgba(255, 127, 0, 0.32);
+            filter: brightness(1.02);
         }
         .btn {
             display: inline-block;
@@ -440,7 +501,7 @@
             margin: 0 0 10px;
             color: #f1c876;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
+              color: #D0D0D0;
             font-size: 0.78rem;
             font-weight: 700;
         }
@@ -540,7 +601,7 @@
         }
         .footer-title {
             margin: 0 0 12px;
-            color: #f1c876;
+            color: #FF7B32;
             font-family: 'Playfair Display', Georgia, serif;
             font-size: 1.18rem;
         }
@@ -562,7 +623,7 @@
             transition: color .22s ease, transform .22s ease;
         }
         .footer-list a:hover {
-            color: #f1c876;
+            color: #FF7B32;
             transform: translateX(2px);
         }
         .hours-row {
@@ -666,7 +727,7 @@
 <body class="{{ $isMenu ? 'menu-page' : '' }}">
 <header class="topbar{{ $isHome ? ' topbar--overlay' : ' is-scrolled' }}" id="site-topbar">
     <div class="container topbar-inner">
-        <a class="brand" href="{{ route('home') }}">Steam & Spice</a>
+        <a class="brand" href="{{ route('home') }}"><span>Steam</span><span class="brand-amp">&amp;</span><span>Spice</span></a>
         <button class="hamburger" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
             <span class="bar"></span>
         </button>
@@ -676,7 +737,7 @@
             <a href="{{ route('updates') }}">Updates</a>
             <a href="{{ route('contact') }}">Contact</a>
             <a href="{{ route('about') }}">About</a>
-            <a href="{{ route('ordering') }}">Order Online</a>
+            <a class="nav-order-link" href="{{ route('ordering') }}">Order Online</a>
             @if(count(session('cart', [])) > 0)
                 <a id="site-cart-count" href="{{ route('cart.index') }}">Cart (<span id="site-cart-count-value" aria-live="polite">{{ count(session('cart', [])) }}</span>)</a>
             @endif
@@ -685,6 +746,7 @@
                 <a href="{{ route('admin.dashboard') }}">Admin</a>
             @endif
         </nav>
+        <a class="header-order-cta" href="{{ route('ordering') }}">Order Online</a>
     </div>
 </header>
     @if(session('success'))

@@ -7,6 +7,31 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Steam & Spice Production Setup Notes
+
+Use these steps for EC2/production deployments.
+
+1. Copy [.env.production.example](.env.production.example) to `.env` on the server and fill in real values.
+2. Generate app key if needed:
+	- `php artisan key:generate --force`
+3. Run schema and data setup:
+	- `php artisan migrate --force`
+	- `php artisan db:seed --force`
+4. Validate production configuration:
+	- `php artisan app:verify-production-config`
+5. Optimize and clear stale caches:
+	- `php artisan optimize:clear`
+	- `php artisan config:cache`
+	- `php artisan route:cache`
+	- `php artisan view:cache`
+
+### Admin access safeguard
+
+A data migration exists to backfill the admin role flag:
+- [database/migrations/2026_05_08_070026_backfill_admin_role_flag_on_users_table.php](database/migrations/2026_05_08_070026_backfill_admin_role_flag_on_users_table.php)
+
+It safely enforces `is_admin = true` for `admin@steamandspice.com` only if the `users` table and `is_admin` column exist.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

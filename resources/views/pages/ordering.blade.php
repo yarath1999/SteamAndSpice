@@ -129,7 +129,7 @@
     .filter-btn {
         background: transparent;
         border: 1px solid rgba(241,200,118,0.18);
-        color: var(--accent-2);
+        color: #FF7B32;
         padding: 8px 12px;
         border-radius: 8px;
         cursor: pointer;
@@ -140,8 +140,8 @@
     }
 
     .filter-btn:hover {
-        background: rgba(241,200,118,0.1);
-        border-color: var(--accent-2);
+        background: rgba(255, 123, 50, 0.12);
+        border-color: #FF7B32;
     }
 
     .no-results {
@@ -256,7 +256,7 @@
     }
 
     .menu-price{
-        color:#f1c876; 
+        color:#FF7B32; 
         font-weight:700; 
         margin:10px 0 0;
         font-size: 1.1rem;
@@ -364,7 +364,7 @@
         display:inline-flex;
         align-items:center;
         justify-content:center;
-        background:linear-gradient(90deg,var(--accent),var(--accent-2));
+        background:#FF7B32;
         color:#1a120b;
         padding:10px 14px;
         border-radius:10px;

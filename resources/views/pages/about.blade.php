@@ -104,7 +104,7 @@
         letter-spacing: 1.2px;
         font-size: 0.8rem;
         font-weight: 700;
-        color: #f1c876;
+        color: #FF7B32;
     }
 
     .about-lead {
@@ -221,7 +221,7 @@
     }
 
     .about-actions .btn.cta-btn {
-        background: linear-gradient(135deg, #ff7b32, #f1c876);
+        background: #FF7B32;
         color: #1a120b;
         box-shadow: 0 8px 18px rgba(255, 123, 50, 0.26);
     }

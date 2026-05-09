@@ -64,7 +64,7 @@
         height:40px;
         flex:0 0 40px;
         border-radius:10px;
-        background:linear-gradient(135deg,#ff7b32,#f1c876);
+        background:#FF7B32;
         display:inline-grid;
         place-items:center;
         color:#1a120b;

@@ -105,7 +105,7 @@
 
     .tab:hover,
     .tab.is-active {
-        background: linear-gradient(135deg, #ff7b32, #f1c876);
+        background: #FF7B32;
         color: #1a120b;
         transform: translateY(-1px);
     }
@@ -227,7 +227,7 @@
     }
 
     .menu-price {
-        color: #f1c876;
+        color: #FF7B32;
         font-size: clamp(1rem, 2vw, 1.15rem);
         font-weight: 700;
         margin-top: 8px;
@@ -286,7 +286,7 @@
     }
 
     .btn-cta {
-        background: linear-gradient(90deg,#ff7b32,#f1c876);
+        background: #FF7B32;
         color: #1a120b;
         padding: 10px 16px;
         border-radius: 8px;

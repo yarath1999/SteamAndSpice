@@ -11,16 +11,17 @@
             --bg: #1a120b;
             --ink: #f5f5f5;
             --accent: #ff7b32;
-            --accent-2: #f1c876;
-            --line: rgba(241, 200, 118, 0.16);
-            --panel: #2a1c13;
-            --sidebar-bg: #120903;
-            --sidebar-link: #cfcfcf;
-            --sidebar-link-active: #f5f5f5;
         }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
+        :root {
+            --bg: #000000;
+            --ink: #f5f5f5;
+            --accent: #FF7F00;
+            --accent-2: #FF9933;
+            --line: rgba(255, 127, 0, 0.16);
+            --panel: #000000;
+            --sidebar-bg: #0a0a0a;
+            --sidebar-link: #D0D0D0;
+            --sidebar-link-active: #f5f5f5;
             font-family: 'Jost', 'Segoe UI', sans-serif;
             color: var(--ink);
             background:
@@ -130,7 +131,7 @@
         .btn {
             border: 0;
             display: inline-block;
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            background: #FF7B32;
             color: #1a120b;
             padding: 9px 13px;
             border-radius: 9px;

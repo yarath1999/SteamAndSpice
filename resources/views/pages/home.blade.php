@@ -28,6 +28,7 @@
         --home-text-soft: #cfcfcf;
         --home-panel: rgba(43, 29, 20, 0.94);
         --home-border: rgba(241, 200, 118, 0.2);
+        --hero-logo: url('{{ asset('images/hero-logo.jpg') }}');
     }
 
     .home-shell {
@@ -250,13 +251,41 @@
 
     .hero {
         position: relative;
-        height: 500px;
+        height: min(78vh, 720px);
+        min-height: 520px;
+        background: radial-gradient(circle at center, rgba(255, 123, 50, 0.22), rgba(0, 0, 0, 0) 52%),
+                    radial-gradient(circle at 50% 45%, rgba(255, 123, 50, 0.14), rgba(0, 0, 0, 0) 68%),
+                    #0a0706;
         background-size: cover;
         background-position: center;
         overflow: hidden;
         width: 100vw;
         margin-left: calc(50% - 50vw);
         margin-right: calc(50% - 50vw);
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        inset: -8% 0 0;
+        background-image: var(--hero-logo);
+        background-repeat: no-repeat;
+        background-position: center 42%;
+        background-size: min(92vw, 900px);
+        opacity: 0.42;
+        filter: blur(5px) saturate(1.08);
+        transform: scale(1.04);
+        z-index: 1;
+    }
+
+    .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(255, 123, 50, 0.22), rgba(0, 0, 0, 0) 60%);
+        opacity: 0.9;
+        z-index: 2;
+        pointer-events: none;
     }
 
     @media (max-width: 768px) {
@@ -272,21 +301,18 @@
     }
 
     .hero-media {
-        width: 100%;
-        height: 500px;
-        overflow: hidden;
-        position: relative;
+        display: none;
     }
 
     @media (max-width: 768px) {
         .hero-media {
-            height: 380px;
+            height: 100%;
         }
     }
 
     @media (max-width: 480px) {
         .hero-media {
-            height: 320px;
+            height: 100%;
         }
     }
 
@@ -296,12 +322,15 @@
         object-fit: cover;
         object-position: center 30%;
         display: block;
+        opacity: 0.12;
+        filter: blur(2px) saturate(0.9);
     }
 
     .hero-overlay-layer {
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, rgba(26, 18, 11, 0.24), rgba(26, 18, 11, 0.58));
+        background: linear-gradient(180deg, rgba(8, 6, 6, 0.4), rgba(8, 6, 6, 0.78));
+        z-index: 3;
     }
 
     .hero-overlay {
@@ -309,8 +338,10 @@
         inset: 0;
         display: flex;
         align-items: center;
+        justify-content: center;
         padding: 0 8%;
-        z-index: 2;
+        z-index: 4;
+        text-align: center;
     }
 
     @media (max-width: 768px) {
@@ -331,14 +362,18 @@
 
     .hero-content {
         position: relative;
-        z-index: 2;
+        z-index: 4;
         color: #f5f5f5;
-        max-width: 600px;
+        max-width: 720px;
         text-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
     }
 
     .hero-content h1 {
-        font-size: clamp(2.4rem, 6vw, 3.8rem);
+        font-size: clamp(2.6rem, 8vw, 5.2rem);
         font-weight: 800;
         line-height: 1.12;
         margin: 0;
@@ -347,6 +382,28 @@
         animation: fadeInUp 0.6s ease-out forwards;
         animation-delay: 100ms;
         font-family: 'Playfair Display', Georgia, serif;
+        text-transform: uppercase;
+        text-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-wordmark {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        line-height: 0.88;
+    }
+
+    .hero-wordline {
+        display: block;
+        white-space: nowrap;
+    }
+
+    .hero-wordline--amp {
+        color: #ff7b32;
+        text-shadow: 0 0 18px rgba(255, 123, 50, 0.75);
+        font-size: 0.92em;
+        margin: 0.06em 0;
     }
 
     @media (max-width: 768px) {
@@ -373,6 +430,7 @@
         font-weight: 700;
         font-size: clamp(0.8rem, 1.8vw, 0.95rem);
         font-family: 'Jost', 'Segoe UI', sans-serif;
+        order: 1;
     }
 
     @media (max-width: 480px) {
@@ -390,6 +448,7 @@
         line-height: 1.8;
         max-width: 56ch;
         font-family: 'Jost', 'Segoe UI', sans-serif;
+        order: 3;
     }
 
     @media (max-width: 480px) {
@@ -405,7 +464,7 @@
         display: inline-block;
         margin-top: 20px;
         padding: 14px 32px;
-        background: linear-gradient(135deg, #ff7b32, #f1c876);
+        background: #FF7B32;
         color: #1a120b;
         border-radius: 999px;
         text-decoration: none;
@@ -417,6 +476,11 @@
         position: relative;
         overflow: hidden;
         font-size: 1rem;
+        order: 4;
+    }
+
+    .hero-content h1 {
+        order: 2;
     }
 
     @media (max-width: 480px) {
@@ -424,6 +488,203 @@
             padding: 12px 24px;
             font-size: 0.95rem;
             margin-top: 16px;
+        }
+    }
+
+    /* New hero content labels and badge styling */
+    .hero-kicker {
+        margin-bottom: 10px;
+        color: var(--home-accent);
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: clamp(0.6rem, 1vw, 0.75rem);
+        font-family: 'Jost', 'Segoe UI', sans-serif;
+        order: 1;
+    }
+
+    .hero-cta-heading {
+        font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+        font-family: 'Playfair Display', Georgia, serif;
+        font-style: italic;
+        color: #ff7b32;
+        font-weight: 600;
+        text-shadow: 0 6px 20px rgba(255, 123, 50, 0.3);
+        letter-spacing: 0.3px;
+        margin-top: 12px;
+        order: 5;
+    }
+
+    .hero-cta-subheading {
+        font-size: clamp(0.55rem, 0.85vw, 0.65rem);
+        font-family: 'Jost', 'Segoe UI', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #cfcfcf;
+        font-weight: 600;
+        margin: 5px 0 0;
+        order: 6;
+    }
+
+    .veg-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 10px;
+        border: 1px solid #2ecc71;
+        border-radius: 999px;
+        color: #2ecc71;
+        font-size: clamp(0.55rem, 0.8vw, 0.65rem);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-family: 'Jost', 'Segoe UI', sans-serif;
+        margin-top: 10px;
+        order: 7;
+        background: rgba(46, 204, 113, 0.08);
+        backdrop-filter: blur(4px);
+    }
+
+    .veg-symbol {
+        font-size: 1.2em;
+        display: inline-block;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 12px;
+        order: 8;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        padding: 7px 16px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 1px solid transparent;
+        cursor: pointer;
+        font-family: 'Jost', 'Segoe UI', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.35px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-primary {
+        background: #FF7B32;
+        color: #1a120b;
+        border-color: #ff7b32;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(255, 123, 50, 0.4);
+    }
+
+    .btn-secondary {
+        background: rgba(46, 204, 113, 0.12);
+        color: #2ecc71;
+        border-color: #2ecc71;
+        backdrop-filter: blur(4px);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(46, 204, 113, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(46, 204, 113, 0.3);
+    }
+
+    .arrow {
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    .btn-primary:hover .arrow {
+        transform: translateX(4px);
+    }
+
+    @media (max-width: 768px) {
+        .hero-kicker {
+            font-size: 0.6rem;
+            margin-bottom: 6px;
+            letter-spacing: 0.9px;
+        }
+
+        .hero-cta-heading {
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .hero-cta-subheading {
+            font-size: 0.6rem;
+            letter-spacing: 0.9px;
+            margin-top: 4px;
+        }
+
+        .veg-badge {
+            font-size: 0.6rem;
+            padding: 5px 9px;
+            margin-top: 8px;
+            gap: 4px;
+        }
+
+        .hero-buttons {
+            gap: 8px;
+            margin-top: 10px;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 7px 14px;
+            font-size: 0.7rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-kicker {
+            font-size: 0.55rem;
+            margin-bottom: 5px;
+            letter-spacing: 0.8px;
+        }
+
+        .hero-cta-heading {
+            font-size: 0.82rem;
+            margin-top: 9px;
+        }
+
+        .hero-cta-subheading {
+            font-size: 0.55rem;
+            letter-spacing: 0.8px;
+            margin-top: 3px;
+        }
+
+        .veg-badge {
+            font-size: 0.55rem;
+            padding: 4px 9px;
+            margin-top: 7px;
+        }
+
+        .hero-buttons {
+            gap: 6px;
+            margin-top: 9px;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            font-size: 0.65rem;
+            letter-spacing: 0.3px;
         }
     }
 
@@ -446,7 +707,7 @@
     .cta-btn:hover {
         transform: translateY(-4px);
         box-shadow: 0 14px 35px rgba(255, 123, 50, 0.4);
-        background: linear-gradient(135deg, #f1c876, #ff7b32);
+        background: #FF7B32;
     }
 
     .cta-btn:active {
@@ -502,7 +763,7 @@
 
     .category-card:hover {
         transform: translateY(-10px) scale(1.06);
-        background: linear-gradient(135deg, #ff7b32, #f1c876);
+        background: #FF7B32;
         color: #1a120b;
         box-shadow: 0 14px 32px rgba(255, 123, 50, 0.38), 0 0 24px rgba(255, 123, 50, 0.24);
     }
@@ -1185,6 +1446,11 @@
 
 <section class="home-shell">
     <div class="home-wrap">
+        @php
+            $heroTitleParts = preg_split('/\s*&\s*/', trim($homepage->hero_title), 2) ?: [$homepage->hero_title];
+            $heroTitleLeft = trim($heroTitleParts[0] ?? $homepage->hero_title);
+            $heroTitleRight = trim($heroTitleParts[1] ?? '');
+        @endphp
         <section class="hero reveal">
             <div class="relative hero-media" aria-hidden="true">
                 <img src="{{ $heroImage }}" alt="{{ $homepage->hero_title }}" onerror="this.onerror=null;this.src='{{ $fallbackImage }}';">
@@ -1192,10 +1458,24 @@
             </div>
             <div class="hero-overlay">
                 <div class="hero-content">
-                    <h1>{{ $homepage->hero_title }}</h1>
-                    <p class="subtitle">{{ $homepage->hero_subtitle }}</p>
-                    <p class="tagline">{{ $homepage->hero_tagline }}</p>
-                    <a href="/order-online" class="cta-btn">Order Now</a>
+                    <div class="hero-kicker">{{ $homepage->hero_subtitle }}</div>
+                    <h1 class="hero-wordmark">
+                        <span class="hero-wordline">{{ $heroTitleLeft !== '' ? $heroTitleLeft : $homepage->hero_title }}</span>
+                        <span class="hero-wordline hero-wordline--amp">&amp;</span>
+                        @if($heroTitleRight !== '')
+                            <span class="hero-wordline">{{ $heroTitleRight }}</span>
+                        @endif
+                    </h1>
+                    <div class="hero-cta-heading">{{ "Every dish full of life" }}</div>
+                    <div class="hero-cta-subheading">Come Hungry, Leave Happy</div>
+                    <div class="veg-badge">
+                        <span class="veg-symbol">🌱</span>
+                        <span>100% Vegetarian</span>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="/order-online" class="btn btn-primary">Explore the Menu <span class="arrow">→</span></a>
+                        <a href="https://wa.me/447555759468" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">WhatsApp 07555 759468</a>
+                    </div>
                 </div>
             </div>
         </section>

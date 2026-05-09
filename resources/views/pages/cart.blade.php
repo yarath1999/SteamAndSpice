@@ -172,7 +172,7 @@
     }
 
     .checkout-btn {
-        background: linear-gradient(90deg, #ff7b32, #f1c876);
+        background: #FF7B32;
         color: #1a120b;
         box-shadow: 0 6px 15px rgba(255, 123, 50, 0.3);
     }

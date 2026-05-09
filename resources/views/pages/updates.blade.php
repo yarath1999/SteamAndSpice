@@ -37,7 +37,7 @@
 
     .updates-kicker {
         margin: 0 0 14px;
-        color: #f1c876;
+        color: #FF7B32;
         text-transform: uppercase;
         letter-spacing: 1.2px;
         font-size: 0.8rem;
